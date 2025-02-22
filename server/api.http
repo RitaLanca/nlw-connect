@@ -1,0 +1,9 @@
+
+# Create subscritpion
+POST http://localhost:3333/subscriptions
+content-type: application/json
+
+{
+  "name": "Diego Fernandes",
+  "email": "diego@rocketseat.com.br"
+}
