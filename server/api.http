@@ -12,5 +12,10 @@ content-type: application/json
 
 # Access invite link 
 ## NOTE - because of redirect when running this route, it will return error
-GET http://localhost:3333/invites/diego123
+GET http://localhost:3333/invites/90326712-9388-442f-bf6b-e1a610dffdd1
 
+### Count invite link of a subscriber
+GET http://localhost:3333/subscribers/90326712-9388-442f-bf6b-e1a610dffdd1/ranking/clicks
+
+### Count how many subscriptions were made 
+GET http://localhost:3333/subscribers/90326712-9388-442f-bf6b-e1a610dffdd1/ranking/count
