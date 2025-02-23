@@ -19,3 +19,6 @@ GET http://localhost:3333/subscribers/90326712-9388-442f-bf6b-e1a610dffdd1/ranki
 
 ### Count how many subscriptions were made 
 GET http://localhost:3333/subscribers/90326712-9388-442f-bf6b-e1a610dffdd1/ranking/count
+
+### Get the subscriber position
+GET http://localhost:3333/subscribers/90326712-9388-442f-bf6b-e1a610dffdd1/ranking/position
