@@ -7,3 +7,10 @@ content-type: application/json
   "name": "Diego Fernandes",
   "email": "diego@rocketseat.com.br"
 }
+
+###
+
+# Access invite link 
+## NOTE - because of redirect when running this route, it will return error
+GET http://localhost:3333/invites/diego123
+
