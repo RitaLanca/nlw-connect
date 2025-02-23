@@ -9,6 +9,17 @@ content-type: application/json
 }
 
 ###
+# Create subscritpion through invited link
+POST http://localhost:3333/subscriptions
+content-type: application/json
+
+{
+  "name": "Friend",
+  "email": "friend@rocketseat.com.br",
+  "referrerId": "90326712-9388-442f-bf6b-e1a610dffdd1" 
+}
+
+###
 
 # Access invite link 
 ## NOTE - because of redirect when running this route, it will return error
