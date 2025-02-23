@@ -1,0 +1,15 @@
+services:
+  service-postgres:
+    image: postgres
+    ports:
+      - "5433:5432" # <host_port>:<container_port>
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_DB: nlw-connect # The name of the database
+  service-redis:
+    image: bitnami/redis
+    ports:
+      - "6379:6379"
+    environment:
+      ALLOW_EMPTY_PASSWORD: yes # As docker compose is not used in production, only in development, we allow an empty password
