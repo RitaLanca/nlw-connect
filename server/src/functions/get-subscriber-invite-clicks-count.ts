@@ -6,7 +6,7 @@ interface GetSubscriberInviteClicksParams {
   subscriberId: string
 }
 
-export async function getSubscriberInviteClicks({
+export async function getSubscriberInviteClicksCount({
   subscriberId,
 }: GetSubscriberInviteClicksParams) {
   // using redit
@@ -14,4 +14,4 @@ export async function getSubscriberInviteClicks({
   return { count: count ? Number.parseInt(count) : 0 }
 }
 
-export default getSubscriberInviteClicks
+export default getSubscriberInviteClicksCount
