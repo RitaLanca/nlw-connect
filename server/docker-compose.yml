@@ -13,3 +13,15 @@ services:
       - "6379:6379"
     environment:
       ALLOW_EMPTY_PASSWORD: yes # As docker compose is not used in production, only in development, we allow an empty password
+
+  service-nlw-connect:
+    build: .
+    depends_on:
+      - service-postgres
+    ports:
+      - "3333:3333"
+    environment:
+      PORT: 333
+      WEB_URL: "http://localhost:3000"
+      POSTGRES_URL: "postgresql://root:pwd@service-postgres/nlw-connect"
+      REDIS_URL: "redis://service-redis"
