@@ -1,0 +1,30 @@
+# syntax=docker/dockerfile:1
+
+# BUILD STAGE
+FROM node:23-alpine3.20 AS build-stage
+
+# setting a working directory inside docker container
+WORKDIR /app
+
+# Copy package files and install dependencies
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+
+RUN npm run build
+
+
+# PRODUCTION STAGE
+FROM node:23-alpine3.20 AS prod
+
+WORKDIR /app
+
+COPY --from=build-stage /app/node_modules ./node_modules
+# COPY --from=build-stage /app/package.json .
+COPY --from=build-stage /app/dist ./dist
+
+# sets the port exposed by container
+EXPOSE 3333
+
+CMD ["node", "dist/server.mjs"]
