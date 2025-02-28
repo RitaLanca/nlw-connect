@@ -1,4 +1,13 @@
 services:
+  service-nlw-connect:
+    build: .
+    ports:
+      - "3333:3333"
+    environment:
+      PORT: 3333
+      WEB_URL: "http://localhost:3000"
+      POSTGRES_URL: "postgresql://root:pwd@service-postgres/nlw-connect"
+      REDIS_URL: "redis://service-redis"
   service-postgres:
     image: postgres
     ports:
