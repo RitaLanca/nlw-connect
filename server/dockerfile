@@ -10,7 +10,8 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-COPY . .
+COPY /drizzle.config.ts ./
+COPY . . 
 
 RUN npm run build
 
@@ -21,10 +22,13 @@ FROM node:23-alpine3.20 AS prod
 WORKDIR /app
 
 COPY --from=build-stage /app/node_modules ./node_modules
-# COPY --from=build-stage /app/package.json .
+COPY --from=build-stage /app/package.json /app/package-lock.json ./
+COPY --from=build-stage /app/src/drizzle ./src/drizzle
+COPY --from=build-stage /app/drizzle.config.ts ./
 COPY --from=build-stage /app/dist ./dist
+
 
 # sets the port exposed by container
 EXPOSE 3333
 
-CMD ["node", "dist/server.mjs"]
+CMD ["sh", "-c", "npx drizzle-kit generate --config=drizzle.config.ts && npx drizzle-kit migrate --config=drizzle.config.ts && node -r dotenv/config dist/server.mjs"]
