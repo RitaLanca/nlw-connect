@@ -63,6 +63,6 @@ jobs:
       - build
       - push_to_registry
     uses: ./.github/workflows/deploy-app-job.yml
-
+    secrets: inherit
 
 
