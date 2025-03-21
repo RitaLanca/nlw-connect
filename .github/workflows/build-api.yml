@@ -28,6 +28,7 @@ jobs:
         run: npm run build --if-present # only run code if script "build" exists in package.json
     # - run: npm test TODO- tests
   push_to_registry:
+    needs: build
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:

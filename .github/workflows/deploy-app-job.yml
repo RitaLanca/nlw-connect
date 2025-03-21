@@ -20,9 +20,9 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDS }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          allow-no-subscriptions: true
-          enable-AzPSSession: true
+#          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+#          allow-no-subscriptions: true
+#          enable-AzPSSession: true
 
       - name: 'Deploy to Azure Container Instances'
         uses: 'azure/aci-deploy@v1'
