@@ -59,6 +59,6 @@ jobs:
           # tags: ritalanca/my-docker-hub/nlw-connect-api:latest
           # annotations: ${{ steps.meta.outputs.annotations }}
   deploy:
-     uses: ./.github/deploy-app-job.yaml
+     uses: ./.github/workflows/deploy-app-job.yaml
 
 
