@@ -63,5 +63,8 @@ jobs:
       - build
       - push_to_registry
     uses: ./.github/workflows/deploy-app-job.yml
+    with:
+      username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+      password: ${{ secrets.DOCKER_REGISTRY_PWD }}
 
 
