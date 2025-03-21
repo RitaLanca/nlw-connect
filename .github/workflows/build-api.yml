@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Deploy NLW Coonnect App
 
 on:
   push:
@@ -58,3 +58,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }} # This is populated by output from metadata-action.
           # tags: ritalanca/my-docker-hub/nlw-connect-api:latest
           # annotations: ${{ steps.meta.outputs.annotations }}
+  deploy:
+     uses: ./.github/deploy-app-job.yaml
+
+
