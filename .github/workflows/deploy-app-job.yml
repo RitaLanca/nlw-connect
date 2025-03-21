@@ -31,10 +31,10 @@ jobs:
           dns-name-label: nlw-connect
           image: ritalanca/images-repository:main
           registry-login-server: docker.io
-          registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          registry-username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+          registry-password: ${{ secrets.DOCKER_REGISTRY_PWD }}
           name: nlw-connect
-          location: 'west us'
+          location: 'west europe'
 
 
       
