@@ -6,6 +6,7 @@ export default defineConfig({
   dialect: 'postgresql',
   dbCredentials: {
     url: process.env.POSTGRES_URL as string,
+    ssl: process.env.NODE_ENV === 'production' && true,
   },
 })
 
