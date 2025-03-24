@@ -59,11 +59,19 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }} # This is populated by output from metadata-action.
           # tags: ritalanca/my-docker-hub/nlw-connect-api:latest
           # annotations: ${{ steps.meta.outputs.annotations }}
-  deploy:
+  deploy-api:
     needs:
       - build
       - push_to_registry
     uses: ./.github/workflows/deploy-app-job.yml
+    secrets: inherit
+  
+  deploy-app:
+    needs:
+      - build
+      - push_to_registry
+      - deploy-api
+    uses: ./.github/workflows/deploy-web-job.yml
     secrets: inherit
 
 
