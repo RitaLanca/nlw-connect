@@ -1,0 +1,67 @@
+name: "📦 Vercel App Deployment"
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  workflow_call:
+
+defaults:
+  run:
+    shell: bash
+    working-directory: ./web 
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment: 'production'
+    env:
+      API_URL: ${{ vars.API_URL}}
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Ensure correct working directory
+        run: cd $GITHUB_WORKSPACE && ls -la
+
+      - name: install Vercel CLI
+        run: npm install --global vercel@latest
+
+      # - name: Debug Working Directory (Web)
+      #   run: pwd && ls -la
+  
+      - name: pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_ACCESS_TOKEN }}
+
+      # - name: Build the project locally
+      #   run: npm run build --if-present
+
+      - name: generate endpoints with orval
+        env:
+          NODE_ENV: production
+        run: npx orval
+
+      # - name: Debug Working Directory (Web)
+      #   run: pwd && ls -la
+
+      - name: Debug - List files
+        run: ls -la
+        working-directory: .
+
+      - name: Verificar estrutura do monorepo
+        run: |
+          echo "Caminho atual: $(pwd)"
+          ls -la
+          
+
+      - name: build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_ACCESS_TOKEN }}
+        # working-directory: ./web
+      
+      - name: deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod  --token=${{ secrets.VERCEL_ACCESS_TOKEN }}
+        # working-directory: ./web
+
+      
