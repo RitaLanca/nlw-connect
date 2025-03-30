@@ -35,7 +35,7 @@ export default function SubscriptionForm() {
       email,
       referrerId: referrer,
     })
-    router.push(`/invite/${subscriberId}`)
+    router.push(`/invite/${subscriberId}?name=${encodeURIComponent(name)}`)
   }
 
   return (
