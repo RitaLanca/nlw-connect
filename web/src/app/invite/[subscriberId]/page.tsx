@@ -8,14 +8,18 @@ import Stats from './stats'
 interface InvitePageProps {
   // in next the params are a promise
   params: Promise<{
-    subscriberId: string
+    subscriberId: string,
+  }>
+  searchParams:Promise<{
+    name: string,
   }>
 }
 
 export default async function InvitePage(props: InvitePageProps) {
   const { subscriberId } = await props.params // NOTE: this props.params is only available for page.tsx files
-
-  const inviteLink = `http://localhost:3333/invites/${subscriberId}`
+  const { name } = await props.searchParams 
+  
+  const inviteLink = `${process.env.API_URL}/invites/${subscriberId}`;
 
   return (
     <div className="min-h-dvh flex items-center justify-between gap-16 flex-col md:flex-row">
@@ -24,10 +28,10 @@ export default async function InvitePage(props: InvitePageProps) {
 
         <div className="space-y-2">
           <h1 className="text-4xl flnt-semibold font-heading text-gray-100 leading-none ">
-            Inscrição confirmada
+            {`Inscrição confirmada - ${name}`}
           </h1>
           <p className="text-gray-300">
-            Para entrar no envento, clique no link enviado para o seu email
+            Para entrar no evento, clique no link enviado para o seu email
           </p>
         </div>
 

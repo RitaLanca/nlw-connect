@@ -8,6 +8,7 @@ import silver from '../../../assets/medal-silver.svg'
 export default async function Ranking() {
   const { ranking } = await getRanking()
 
+  if(ranking.length === 0) return null;
   return (
     <div className="w-full max-w-[440px] space-y-5">
       <h2 className="text-gray-200 text-xl font-semibold font-heading leading-none">
